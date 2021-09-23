@@ -1,10 +1,7 @@
 /*
-
 Script name : script.js
 Description:
 - Helps to load and populate task 
-- 
-
 */
 
 //Intializing array of events
