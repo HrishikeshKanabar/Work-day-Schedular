@@ -28,15 +28,15 @@ https://hrishikeshkanabar.github.io/Work-day-Schedular/
 
  Web Application        
 :--------------------------------:|
-![Web Application ](https://github.com/HrishikeshKanabar/)      
+![Web Application ](https://github.com/HrishikeshKanabar/Work-day-Schedular/blob/main/assets/images/Full-app-snap.JPG)      
 
 Web Application  With Saved Events    
 :--------------------------------:|
-![iWeb Application  with event saved](https://github.com/HrishikeshKanabar/)  
+![iWeb Application  with event saved](https://github.com/HrishikeshKanabar/Work-day-Schedular/blob/main/assets/images/Events.JPG)  
 
 Web Application With Prompt    
 :--------------------------------:|
-![iWeb Application  with event saved](https://github.com/HrishikeshKanabar/)  
+![iWeb Application  with event saved](https://github.com/HrishikeshKanabar/Work-day-Schedular/blob/main/assets/images/Prompt.JPG)  
 
 ## Acceptance Criteria achieved
 
