@@ -7,20 +7,20 @@ Description:
 
 */
 
-//Intializing array of task
-var tasks = [];
+//Intializing array of events
+var events = [];
 
 
 /*
 ##################################################################
-Function name: loadsTask
+Function name: loadsEvents
 Description :
 -Get the task stored in loocal storage
 -Populate them to textarea as per id
 ##################################################################
 */
 
-var loadsTask = function () {
+var loadsEvents = function () {
   //take the value from the local storage for each textarea
 
   $("#9").val(localStorage.getItem("9"))
@@ -60,16 +60,16 @@ $('.saveBtn').on('click', function (event) {
       2.) Id of text area kept same as time  and value is whatever entered by use
   */
   var previousElement = $(this).prev()[0];
-  var timeTask = previousElement.id;
-  var taskDescription = previousElement.value;
+  var timeEvent = previousElement.id;
+  var EventDescription = previousElement.value;
 
   //console.log(timeTask);
   //console.log(taskDescription);
 
   // Creating JSON object to store time in local storage
-  task = {
-    tasksid: timeTask,
-    tasksdes: taskDescription
+  eve = {
+    eventid: timeTask,
+    eventdes: taskDescription
   };
 
   //Validation task description is not empty
@@ -78,35 +78,58 @@ $('.saveBtn').on('click', function (event) {
   }else{
  
   //Adding the object to the array
-  tasks.push(task);
+  events.push(task);
 
  //call function  store the tasks in local storage
-  saveTasksInLocalStorage();
+  saveEventsInLocalStorage();
   }
 
 });
 
-//save task in localStorage
+/*
+##################################################################
+Function name: saveEventsInLocalStorage
+Description :
+-Stores event in localStorage
+##################################################################
+*/
 
-var saveTasksInLocalStorage = function () {
+
+
+var saveEventsInLocalStorage = function () {
   
-    localStorage.setItem(task.tasksid, task.tasksdes);
+    localStorage.setItem(eve.eventid, eve.eventdes);
 }
 
-// function for show the current date
-var now = moment().format("dddd, MMMM Do");
-var dateD = function () {
+/*
+##################################################################
+Function name: showCurrentDayDateTime
+Description :
+- To show current day date and time
+- Using momemt api
+##################################################################
+*/
+
+var CurrentDayDateTime = moment().format("dddd, MMMM Do");
+var showCurrentDayDateTime = function () {
   //selector for show the date 
-  $("#currentDay").text(now);
+  $("#currentDay").text(CurrentDayDateTime);
 };
 
 
-
-//taking the current hour
+// Current hour with help of moment api
 var currentTime = moment().hour();
 
-// function change task color 
-var colorHour = function () {
+/*
+##################################################################
+Function name: colorForHours
+Description :
+- Change events color as per hours
+##################################################################
+*/
+
+  
+var colorForHours = function () {
 
   $(".description").each(function () {
     var hourNumber = parseInt($(this).attr("id"));
@@ -127,11 +150,12 @@ var colorHour = function () {
 
   })
 }
-// call function for change tasks color depending the hour of the day
-colorHour();
 
-// call  function for show the current date
-dateD();
+// Calling the function to show colors as per hours
+colorForHours();
 
-// Load task function called when page is get loaded
-loadsTask();
+// Calling the function to show current day date and time
+showCurrentDayDateTime();
+
+// Calling the function to load events on page loads
+loadsEvents();
