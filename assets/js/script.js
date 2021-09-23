@@ -10,7 +10,6 @@ Description:
 //Intializing array of events
 var events = [];
 
-
 /*
 ##################################################################
 Function name: loadsEvents
@@ -23,22 +22,21 @@ Description :
 var loadsEvents = function () {
   //take the value from the local storage for each textarea
 
-  $("#9").val(localStorage.getItem("9"))
-  $("#10").val(localStorage.getItem("10"))
-  $("#11").val(localStorage.getItem("11"))
-  $("#12").val(localStorage.getItem("12"))
-  $("#13").val(localStorage.getItem("13"))
-  $("#14").val(localStorage.getItem("14"))
-  $("#15").val(localStorage.getItem("15"))
-  $("#16").val(localStorage.getItem("16"))
-  $("#17").val(localStorage.getItem("17"))
-  $("#18").val(localStorage.getItem("18"))
-  $("#19").val(localStorage.getItem("19"))
-  $("#20").val(localStorage.getItem("20"))
-  $("#21").val(localStorage.getItem("21"))
-  $("#22").val(localStorage.getItem("22"))
-
-}
+  $("#9").val(localStorage.getItem("9"));
+  $("#10").val(localStorage.getItem("10"));
+  $("#11").val(localStorage.getItem("11"));
+  $("#12").val(localStorage.getItem("12"));
+  $("#13").val(localStorage.getItem("13"));
+  $("#14").val(localStorage.getItem("14"));
+  $("#15").val(localStorage.getItem("15"));
+  $("#16").val(localStorage.getItem("16"));
+  $("#17").val(localStorage.getItem("17"));
+  $("#18").val(localStorage.getItem("18"));
+  $("#19").val(localStorage.getItem("19"));
+  $("#20").val(localStorage.getItem("20"));
+  $("#21").val(localStorage.getItem("21"));
+  $("#22").val(localStorage.getItem("22"));
+};
 
 /*
 ##################################################################
@@ -50,11 +48,10 @@ Description :
 ##################################################################
 */
 
-$('.saveBtn').on('click', function (event) {
+$(".saveBtn").on("click", function (event) {
+  // Just to prevent default click for butoon and icons
+  event.preventDefault();
 
-   // Just to prevent default click for butoon and icons
-    event.preventDefault();
-   
   /*
       1.) Fetching prevoius element before button that is textarea
       2.) Id of text area kept same as time  and value is whatever entered by use
@@ -68,22 +65,20 @@ $('.saveBtn').on('click', function (event) {
 
   // Creating JSON object to store time in local storage
   eve = {
-    eventid: timeTask,
-    eventdes: taskDescription
+    eventid: timeEvent,
+    eventdes: EventDescription,
   };
 
   //Validation task description is not empty
-  if (taskDescription === ""){
-    alert("You need to fill the description of task.")
-  }else{
- 
-  //Adding the object to the array
-  events.push(task);
+  if (EventDescription === "") {
+    alert("You need to fill the description of task.");
+  } else {
+    //Adding the object to the array
+    events.push(eve);
 
- //call function  store the tasks in local storage
-  saveEventsInLocalStorage();
+    //call function  store the tasks in local storage
+    saveEventsInLocalStorage();
   }
-
 });
 
 /*
@@ -94,12 +89,9 @@ Description :
 ##################################################################
 */
 
-
-
 var saveEventsInLocalStorage = function () {
-  
-    localStorage.setItem(eve.eventid, eve.eventdes);
-}
+  localStorage.setItem(eve.eventid, eve.eventdes);
+};
 
 /*
 ##################################################################
@@ -112,13 +104,9 @@ Description :
 
 var CurrentDayDateTime = moment().format("dddd, MMMM Do");
 var showCurrentDayDateTime = function () {
-  //selector for show the date 
+  //selector for show the date
   $("#currentDay").text(CurrentDayDateTime);
 };
-
-
-// Current hour with help of moment api
-var currentTime = moment().hour();
 
 /*
 ##################################################################
@@ -128,28 +116,26 @@ Description :
 ##################################################################
 */
 
-  
-var colorForHours = function () {
+// Current hour with help of moment api
+var currentTime = moment().hour();
 
+var colorForHours = function () {
   $(".description").each(function () {
     var hourNumber = parseInt($(this).attr("id"));
 
     //condicional for change color in past, present and future depending the current hour
     if (hourNumber < currentTime) {
-      $(this).addClass("past")
+      $(this).addClass("past");
+    } else if (hourNumber === currentTime) {
+      $(this).addClass("present");
+      $(this).removeClass("past");
+    } else {
+      $(this).addClass("future");
+      $(this).removeClass("past");
+      $(this).removeClass("present");
     }
-    else if (hourNumber === currentTime) {
-      $(this).addClass("present")
-      $(this).removeClass("past")
-    }
-    else {
-      $(this).addClass("future")
-      $(this).removeClass("past")
-      $(this).removeClass("present")
-    }
-
-  })
-}
+  });
+};
 
 // Calling the function to show colors as per hours
 colorForHours();
